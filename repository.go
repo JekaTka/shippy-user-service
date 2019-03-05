@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "github.com/JekaTka/microservices-in-golang/user-service/proto/user"
+	pb "github.com/JekaTka/shippy-user-service/proto/user"
 	"github.com/jinzhu/gorm"
 )
 
