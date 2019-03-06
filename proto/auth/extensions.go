@@ -1,11 +1,18 @@
-package go_micro_srv_user
+package auth
 
 import (
+	"log"
+
 	"github.com/jinzhu/gorm"
 	"github.com/satori/go.uuid"
 )
 
 func (model *User) BeforeCreate(scope *gorm.Scope) error {
-	uuid := uuid.NewV4()
+	uuid, err := uuid.NewV4()
+
+	if err != nil {
+		log.Fatalf("uuid generation error: %v", err)
+	}
+
 	return scope.SetColumn("Id", uuid.String())
 }

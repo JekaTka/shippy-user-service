@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	pb "github.com/JekaTka/shippy-user-service/proto/user"
+	pb "github.com/JekaTka/shippy-user-service/proto/auth"
 	"golang.org/x/net/context"
 )
 

@@ -1,5 +1,5 @@
 build:
-	protoc -I. --go_out=plugins=micro:$(GOPATH)/src/github.com/JekaTka/shippy-user-service proto/user/user.proto
+	protoc -I. --go_out=plugins=micro:$(GOPATH)/src/github.com/JekaTka/shippy-user-service proto/auth/auth.proto
 	GOOS=linux GOARCH=amd64 go build
 	docker build -t user-service .
 
