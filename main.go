@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	pb "github.com/JekaTka/shippy-user-service/proto/auth"
 	"github.com/micro/go-micro"
+	_ "github.com/micro/go-micro/registry/mdns"
 )
 
 func main() {
@@ -33,21 +33,20 @@ func main() {
 	srv := micro.NewService(
 
 		// This name must match the package name given in your protobuf definition
-		micro.Name("go.micro.srv.user"),
-		micro.Version("latest"),
+		micro.Name("shippy.auth"),
 	)
 
 	// Init will parse the command line flags.
 	srv.Init()
 
-	// Get instance of the broker using our defaults
-	pubsub := srv.Server().Options().Broker
+	// Will comment this out for now to save having to run this locally...
+	// publisher := micro.NewPublisher("user.created", srv.Client())
 
 	// Register handler
-	pb.RegisterUserServiceHandler(srv.Server(), &service{repo, tokenService, pubsub})
+	pb.RegisterAuthHandler(srv.Server(), &service{repo, tokenService})
 
 	// Run the server
 	if err := srv.Run(); err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 }
