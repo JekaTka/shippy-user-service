@@ -16,4 +16,4 @@ WORKDIR /app
 COPY --from=builder /go/src/github.com/JekaTka/shippy-user-service .
 
 
-CMD ["./user-service"]
+CMD ["./shippy-user-service"]
